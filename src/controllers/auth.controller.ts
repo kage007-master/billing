@@ -71,7 +71,30 @@ const authController = {
   },
 
   users: async (req: any, res: any) => {
-    const result: any = (await UserModel.find()) as User[];
+    const result: any = (await UserModel.find(
+      {},
+      {
+        _id: 0,
+        wallet: 0,
+        role: 0,
+        __v: 0,
+        balance: {
+          eth: 0,
+          bnb: 0,
+          ltc: 0,
+          egld: 0,
+          btc: 0,
+          kas: 0,
+          usdc: 0,
+          usdt: 0,
+          erg: 0,
+          xrp: 0,
+          matic: 0,
+          sol: 0,
+          ada: 0,
+        },
+      }
+    )) as User[];
     res.send(result);
   },
 };
