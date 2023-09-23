@@ -6,7 +6,7 @@ import authMiddleware from "../middlewares/auth";
 const router = express.Router();
 
 router.post("/auth/login", authValidation.login, authController.login); // address
-router.post("/auth/register", authValidation.register, authController.register); //  address, name, avatar
+router.post("/auth/profile", authController.updateProfile);
 router.get("/auth/users", authController.users);
 
 router.get("/prices", walletController.getPrices);
