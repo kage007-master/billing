@@ -5,7 +5,7 @@ export interface User {
   address: string;
   name?: string;
   balance: Record<TCoin, number>;
-  avatarUrl?: string;
+  avatar?: string;
   wallet: any;
   save: any;
 }

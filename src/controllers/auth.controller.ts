@@ -44,7 +44,20 @@ const authController = {
     }
   },
 
-  updateProfile: async (req: any, res: any) => {},
+  updateProfile: async (req: any, res: any) => {
+    try {
+      const { address, name, avatar } = req.body;
+      let user = (await UserModel.findOne({ address })) as User;
+      if (user) {
+        user.name = name;
+        user.avatar = avatar;
+        user.save();
+        res.send({ user });
+      }
+    } catch (error: any) {
+      return res.status(500).send({ msg: "Server Error", error });
+    }
+  },
 
   users: async (req: any, res: any) => {
     const result: any = (await UserModel.find(
@@ -77,7 +90,7 @@ const authController = {
 
 export const authValidation = {
   login: [check("address", "Connect your wallet").not().isEmpty()],
-  register: [
+  profile: [
     check("address", "Connect your wallet").not().isEmpty(),
     check("name", "Name is required").not().isEmpty(),
     check("avatar", "Avatar is required").not().isEmpty(),
