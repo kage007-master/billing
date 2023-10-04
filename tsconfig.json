@@ -2,7 +2,7 @@
   "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
     "target": "ES2019",
-    "module": "commonjs",
+    "module": "Node16",
     "outDir": "dist",
     "baseUrl": "src",
     "esModuleInterop": true
